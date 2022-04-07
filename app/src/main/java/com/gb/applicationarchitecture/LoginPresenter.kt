@@ -14,14 +14,14 @@ class LoginPresenter : LoginContract.Presenter {
         view?.showProgress()
         Thread {
             sleep(3000L)
-            view?.hideProgress()
-
-            if (checkCredentials(login,password)){
-                view?.setError("ошибка ввода данных")
-            } else {
-                view?.setSuccess()
+            view?.getHandler()?.post{
+                view?.hideProgress()
+                if (checkCredentials(login,password)){
+                    view?.setError("ошибка ввода данных")
+                } else {
+                    view?.setSuccess()
+                }
             }
-
         }.start()
     }
 

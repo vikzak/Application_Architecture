@@ -1,5 +1,6 @@
 package com.gb.applicationarchitecture
 
+import android.os.Handler
 
 
 class LoginContract {
@@ -8,6 +9,7 @@ class LoginContract {
         fun showProgress()
         fun hideProgress()
         fun setError(error: String)
+        fun getHandler(): Handler
     }
 
     interface Presenter {

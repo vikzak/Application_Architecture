@@ -5,9 +5,12 @@ import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.MainThread
 import androidx.core.view.isVisible
 import com.gb.applicationarchitecture.databinding.ActivityMainBinding
 
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
         }
     }
 
+    @MainThread
     override fun setSuccess() {
         binding.loginButton.isVisible = false
         binding.loginEditText.isVisible = false
@@ -35,6 +39,7 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
         binding.root.setBackgroundColor(Color.MAGENTA)
     }
 
+    @MainThread
     override fun showProgress() {
         binding.loginButton.isEnabled = false
         binding.loginEditText.isEnabled = false
@@ -42,6 +47,7 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
         hideKeyboard(this)
     }
 
+    @MainThread
     override fun hideProgress() {
         binding.loginButton.isEnabled = true
         binding.loginEditText.isEnabled = true
@@ -49,8 +55,13 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
         showKeyboard(this)
     }
 
+    @MainThread
     override fun setError(error: String) {
         Toast.makeText(this, "APP ERROR: $error", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun getHandler(): Handler {
+        return Handler(Looper.getMainLooper())
     }
 
     private fun hideKeyboard(activity: Activity) {
