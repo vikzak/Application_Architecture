@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
         binding.loginButton.isEnabled = true
         binding.loginEditText.isEnabled = true
         binding.passwordEditText.isEnabled = true
-        showKeyboard(this)
+        //showKeyboard(this)
     }
 
     @MainThread
@@ -60,9 +60,7 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
         Toast.makeText(this, "APP ERROR: $error", Toast.LENGTH_SHORT).show()
     }
 
-    override fun getHandler(): Handler {
-        return Handler(Looper.getMainLooper())
-    }
+
 
     private fun hideKeyboard(activity: Activity) {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

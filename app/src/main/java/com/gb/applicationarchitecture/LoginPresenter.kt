@@ -1,10 +1,13 @@
 package com.gb.applicationarchitecture
 
+import android.os.Handler
+import android.os.Looper
 import java.lang.Thread.sleep
 
 
 class LoginPresenter : LoginContract.Presenter {
     private var view: LoginContract.View? = null
+    private val uiHandler = Handler(Looper.getMainLooper())
 
     override fun onAttach(view: LoginContract.View) {
         this.view = view
@@ -14,7 +17,7 @@ class LoginPresenter : LoginContract.Presenter {
         view?.showProgress()
         Thread {
             sleep(3000L)
-            view?.getHandler()?.post{
+            uiHandler.post{
                 view?.hideProgress()
                 if (checkCredentials(login,password)){
                     view?.setError("ошибка ввода данных")
