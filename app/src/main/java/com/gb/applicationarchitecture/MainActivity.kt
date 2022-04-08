@@ -16,19 +16,32 @@ import com.gb.applicationarchitecture.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), LoginContract.View {
     private lateinit var binding: ActivityMainBinding
-    private var presenter: LoginContract.Presenter?=null
+    private var presenter: LoginContract.Presenter? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = LoginPresenter()
+        presenter = restorePresenter()
         presenter?.onAttach(this)
 
         binding.loginButton.setOnClickListener {
-            presenter?.onLogin(binding.loginEditText.text.toString(),
-                binding.passwordEditText.text.toString())
+            presenter?.onLogin(
+                binding.loginEditText.text.toString(),
+                binding.passwordEditText.text.toString()
+            )
         }
+    }
+
+    private fun restorePresenter(): LoginPresenter {
+        val presenter = lastCustomNonConfigurationInstance as? LoginPresenter
+        return presenter ?: LoginPresenter()
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onRetainCustomNonConfigurationInstance(): Any? {
+        return presenter
     }
 
     @MainThread
@@ -61,10 +74,9 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
     }
 
 
-
     private fun hideKeyboard(activity: Activity) {
         val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        var view: View? = activity.currentFocus
+        val view: View? = activity.currentFocus
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
