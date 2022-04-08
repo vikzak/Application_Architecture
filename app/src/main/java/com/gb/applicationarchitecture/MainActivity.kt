@@ -5,8 +5,6 @@ import android.content.Context
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
@@ -47,6 +45,8 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
     @MainThread
     override fun setSuccess() {
         binding.loginButton.isVisible = false
+        binding.registrationButton.isVisible = false
+        binding.forgotButton.isVisible = false
         binding.loginEditText.isVisible = false
         binding.passwordEditText.isVisible = false
         binding.root.setBackgroundColor(Color.MAGENTA)
@@ -55,16 +55,22 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
     @MainThread
     override fun showProgress() {
         binding.loginButton.isEnabled = false
+        binding.registrationButton.isEnabled = false
+        binding.forgotButton.isEnabled = false
         binding.loginEditText.isEnabled = false
         binding.passwordEditText.isEnabled = false
+        binding.progressCircular.isVisible = true
         hideKeyboard(this)
     }
 
     @MainThread
     override fun hideProgress() {
         binding.loginButton.isEnabled = true
+        binding.registrationButton.isEnabled = true
+        binding.forgotButton.isEnabled = true
         binding.loginEditText.isEnabled = true
         binding.passwordEditText.isEnabled = true
+        binding.progressCircular.isVisible = false
         //showKeyboard(this)
     }
 

@@ -11,25 +11,51 @@
         android:id="@+id/login_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/login_name"
-        android:singleLine="true"
+        android:layout_marginTop="@dimen/main_padding"
         android:autofillHints="222"
-        android:inputType="text" />
+        android:hint="@string/login_name"
+        android:inputType="text"
+        android:singleLine="true" />
 
     <EditText
         android:id="@+id/password_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints="222"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:singleLine="true"
-        android:autofillHints="222" />
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/login" />
+
+    <Button
+        android:id="@+id/registration_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/registration" />
+
+    <Button
+        android:id="@+id/forgot_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/forgot" />
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        style="@android:style/Widget.ProgressBar.Large"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:ignore="InvalidId" />
 
 </LinearLayout>
