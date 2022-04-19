@@ -5,4 +5,5 @@
     <string name="login">login</string>
     <string name="registration">registration</string>
     <string name="forgot">forgot</string>
+    <string name="error">ошибка ввода данных</string>
 </resources>

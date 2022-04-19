@@ -1,6 +1,5 @@
-package com.gb.applicationarchitecture
+package com.gb.applicationarchitecture.ui.login
 
-import android.os.Handler
 import androidx.annotation.MainThread
 
 

@@ -1,4 +1,4 @@
-package com.gb.applicationarchitecture
+package com.gb.applicationarchitecture.ui
 
 import android.app.Activity
 import android.content.Context
@@ -10,7 +10,11 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.core.view.isVisible
+import com.gb.applicationarchitecture.App
+import com.gb.applicationarchitecture.app
 import com.gb.applicationarchitecture.databinding.ActivityMainBinding
+import com.gb.applicationarchitecture.ui.login.LoginContract
+import com.gb.applicationarchitecture.ui.login.LoginPresenter
 
 class MainActivity : AppCompatActivity(), LoginContract.View {
     private lateinit var binding: ActivityMainBinding
@@ -32,9 +36,9 @@ class MainActivity : AppCompatActivity(), LoginContract.View {
         }
     }
 
-    private fun restorePresenter(): LoginPresenter {
+    private fun restorePresenter():  LoginPresenter {
         val presenter = lastCustomNonConfigurationInstance as? LoginPresenter
-        return presenter ?: LoginPresenter()
+        return presenter ?: LoginPresenter(app.api)
     }
 
     @Deprecated("Deprecated in Java")
